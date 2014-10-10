@@ -14,4 +14,9 @@ Changes from version 35 (isrv_35.zip):
 - added decrypt_private_keys.cmd for decryption private key
 - some minor modifications.
 
+How to install: 
+- copy files to htdocs folder in XAMPP
+- add line "127.0.0.1 albert.apple.com" to hosts 
+
+
 For entertainment purposes only.
