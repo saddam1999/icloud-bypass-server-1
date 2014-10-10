@@ -16,7 +16,9 @@ Changes from version 35 (isrv_35.zip):
 
 How to install: 
 - copy files to htdocs folder in XAMPP
-- add line "127.0.0.1 albert.apple.com" to hosts 
+- add line "127.0.0.1 albert.apple.com" to hosts
+- connect iDevice
+- open iTunes
 
 
 For entertainment purposes only.
