@@ -136,51 +136,32 @@ $fairPlayKeyData = 'LS0tLS1CRUdJTiBDT05UQUlORVItLS0tLQpBQUVBQVIvcWRpY3lUdWJtMmxK
 file_put_contents($devicefolder.'account-token.txt', $accountToken);
 file_put_contents($devicefolder.'signature.txt', $accountTokenSignature);
 
-echo 
-'<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta name="keywords" content="iTunes Store" /><meta name="description" content="iTunes Store" /><title>iPhone Activation</title><link href="http://static.ips.apple.com/ipa_itunes/stylesheets/shared/common-min.css" charset="utf-8" rel="stylesheet" /><link href="http://static.ips.apple.com/deviceservices/stylesheets/styles.css" charset="utf-8" rel="stylesheet" /><link href="http://static.ips.apple.com/ipa_itunes/stylesheets/pages/IPAJingleEndPointErrorPage-min.css" charset="utf-8" rel="stylesheet" /><link href="resources/auth_styles.css" charset="utf-8" rel="stylesheet" /><script id="protocol" type="text/x-apple-plist">
-<plist version="1.0">
-	<dict>
-		<key>'.($deviceClass === "iPhone" ? 'iphone' : 'device').'-activation</key>
-		<dict>
-			<key>activation-record</key>
-			<dict>
-				<key>FairPlayKeyData</key>
-				<data>'.$fairPlayKeyData.'</data>
-				<key>AccountTokenCertificate</key>
-				<data>'.$accountTokenCertificateBase64.'</data>
-				<key>DeviceCertificate</key>
-				<data>'.$deviceCertificate.'</data>
-				<key>AccountTokenSignature</key>
-				<data>'.$accountTokenSignature.'</data>
-				<key>AccountToken</key>
-				<data>'.$accountTokenBase64.'</data>
-			</dict>
-			<key>unbrick</key>
-			<true/>
-		</dict>
-	</dict>
-</plist>
-</script><script>var protocolElement = document.getElementById("protocol");var protocolContent = protocolElement.innerText;iTunes.addProtocol(protocolContent);</script></head>
-<body>
-<div class="page">
-	<div class="content">
-		<section class="headline"><h1 class="title"><span class="title-text">RESPONSE SENT!</span></h1></section>
-		<section class="message">
-			<label class="message-title">'.$productNames[$productType].' details</label>
-			<table class="message-text">
-				<tr><td>iOSv:</td><td>'.$productVersion.'</td></tr>
-				<tr><td>ARND:</td><td>'.$activationRandomness.'</td></tr>
-				<tr><td>UDID:</td><td>'.$uniqueDiviceID.'</td></tr>
-				<tr><td>ASN:</td><td>'.(isset($serialNumber) ? $serialNumber : "-").'</td></tr>
-				<tr><td>UCID:</td><td>'.(isset($ucid) ? $ucid : "-").'</td></tr>								
-				<tr><td>ICCID:</td><td>'.(isset($iccid) ? $iccid : "-").'</td></tr>
-				<tr><td>IMEI:</td><td>'.(isset($imei) ? $imei : "-").'</td></tr>
-				<tr><td>IMSI:</td><td>'.(isset($imsi) ? $imsi : "-").'</td></tr>
-				<tr><td>GUID:</td><td>'.(isset($guid) ? $guid : "-").'</td></tr>
-			</table>
-		</section>
-	</div>
-	<img class="product-image" src="resources/auth_'.strtolower($deviceClass).'.png"/>
-</div>
-</body></html>';
+$recordStr = '<plist version="1.0">
+	 <dict>
+        <key>iphone-activation</key>
+        <dict>
+            <key>activation-record</key>
+            <dict>
+                <key>unbrick</key>
+                <true/>
+                <key>FairPlayKeyData</key>
+                <data>'.$fairPlayKeyData.'</data>
+                <key>AccountTokenCertificate</key>
+                <data>'.$accountTokenCertificateBase64.'</data>
+                <key>DeviceCertificate</key>
+                <data>'.$deviceCertificate.'</data>
+                <key>AccountTokenSignature</key>
+                <data>'.$accountTokenSignature.'</data>
+                <key>AccountToken</key>
+                <data>'.$accountTokenBase64.'</data>
+            </dict>
+	    </dict>
+    </dict>
+</plist>';
+
+//$myfile = fopen("/Users/zam/Desktop/jihuo/123.plist", "w") or die("Unable to open file!");
+//fwrite($myfile, $recordStr);
+
+header('Content-Type: application/xml');
+echo $recordStr;
 ?>
