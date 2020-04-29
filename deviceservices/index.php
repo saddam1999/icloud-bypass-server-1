@@ -159,9 +159,6 @@ $recordStr = '<plist version="1.0">
     </dict>
 </plist>';
 
-//$myfile = fopen("/Users/zam/Desktop/jihuo/123.plist", "w") or die("Unable to open file!");
-//fwrite($myfile, $recordStr);
-
 header('Content-Type: application/xml');
 echo $recordStr;
 ?>
